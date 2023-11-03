@@ -1,57 +1,15 @@
 import Header from "@/components/Header";
 import getAllProducts from "@/libs/getAllProducts";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
-
-const products = [
-  {
-    id: 1,
-    name: "Earthen Bottle",
-    href: "#",
-    price: "$48",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg",
-    imageAlt:
-      "Tall slender porcelain bottle with natural clay textured body and cork stopper.",
-  },
-  {
-    id: 2,
-    name: "Nomad Tumbler",
-    href: "#",
-    price: "$35",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-02.jpg",
-    imageAlt:
-      "Olive drab green insulated bottle with flared screw lid and flat top.",
-  },
-  {
-    id: 3,
-    name: "Focus Paper Refill",
-    href: "#",
-    price: "$89",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg",
-    imageAlt:
-      "Person using a pen to cross a task off a productivity paper card.",
-  },
-  {
-    id: 4,
-    name: "Machined Mechanical Pencil",
-    href: "#",
-    price: "$35",
-    imageSrc:
-      "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg",
-    imageAlt:
-      "Hand holding black machined steel mechanical pencil with brass tip and top.",
-  },
-  // More products...
-];
+import { AiOutlineHeart } from "react-icons/ai";
 
 const page = async () => {
   const getallproduct = await getAllProducts();
   return (
     <>
-      <div className="bg-stone-300 h-[100vh]">
+      <div className="h-[100vh]">
         <Header />
         <div>
           <div className="bg-white">
@@ -59,24 +17,32 @@ const page = async () => {
               <h2 className="sr-only">Products</h2>
 
               <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-                {getallproduct.products.map((product) => (
-                  <a key={product.id} href={product.href} className="group">
-                    <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-                      <Image
-                        src={product.thumbnail}
-                        alt={product.title}
-                        width={100}
-                        height={100}
-                        className="h-full w-full object-cover object-center group-hover:opacity-75"
-                      />
+                {getallproduct.products.map((product: any) => (
+                  <Link key={product.id} href={`/product/${product.id}`} className="group">
+                    <div className="relative">
+                      <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
+                        <Image
+                          src={product.thumbnail}
+                          alt={product.title}
+                          width={100}
+                          height={100}
+                          className="h-full w-full object-cover object-center hover:opacity-75"
+                        />
+                      </div>
+                      <div className="absolute bg-slate-200 rounded-full bottom-2 right-2 text-rose-400 text-3xl p-2">
+                        <button>
+                          <AiOutlineHeart />
+                        </button>
+                      </div>
                     </div>
-                    <h3 className="mt-4 text-sm text-gray-700">
+
+                    <h3 className="mt-4 text-center text-sm text-gray-700">
                       {product.title}
                     </h3>
-                    <p className="mt-1 text-lg font-medium text-gray-900">
+                    <p className="mt-1 text-center text-lg font-medium text-gray-900">
                       ${product.price}
                     </p>
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
