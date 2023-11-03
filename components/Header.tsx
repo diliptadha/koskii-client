@@ -30,13 +30,22 @@ const Header = () => {
           />
         </Link>
         <div className="text-rose-500 w-[300px] justify-end flex gap-x-4 lg:gap-x-8 text-3xl">
-          <Link href="/favorites" className="cursor-pointer">
+          <Link
+            href="/favorites"
+            className="cursor-pointer hover:lg:text-yellow-100 hover:bg-rose-200 hover:rounded-full lg:p-2"
+          >
             <AiOutlineHeart />
           </Link>
-          <Link href="/account" className="cursor-pointer">
+          <Link
+            href="/account"
+            className="cursor-pointer hover:lg:text-yellow-100 hover:bg-rose-200 hover:rounded-full lg:p-2"
+          >
             <AiOutlineUser />
           </Link>
-          <Link href="/cart" className="cursor-pointer">
+          <Link
+            href="/cart"
+            className="cursor-pointer hover:lg:text-yellow-100 hover:bg-rose-200 hover:rounded-full lg:p-2"
+          >
             <FiShoppingCart />
           </Link>
         </div>
